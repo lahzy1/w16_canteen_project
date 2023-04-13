@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.HelloController">
    <children>
       <Button layoutX="77.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
       <Button layoutX="270.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
