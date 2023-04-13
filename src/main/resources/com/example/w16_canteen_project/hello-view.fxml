@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.HelloController">
    <children>
-      <Button layoutX="77.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
-      <Button layoutX="270.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
-      <Button layoutX="76.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Button" />
-      <Button layoutX="270.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Button" />
-      <Button layoutX="121.0" layoutY="558.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="Button" />
-      <TextField layoutX="78.0" layoutY="52.0" prefHeight="43.0" prefWidth="318.0" promptText="Search" />
+      <Button fx:id="btnLunch" layoutX="77.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
+      <Button fx:id="btnDrinks" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
+      <Button fx:id="btnSnacks" layoutX="76.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
+      <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
+      <Button fx:id="btnLogout" layoutX="121.0" layoutY="558.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="Logout" />
+      <TextField fx:id="tfSearch" layoutX="78.0" layoutY="52.0" prefHeight="43.0" prefWidth="318.0" promptText="Search" />
       <GridPane layoutX="482.0" layoutY="107.0" prefHeight="426.0" prefWidth="262.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,27 +31,27 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" text="Button" GridPane.columnIndex="3" />
+            <Button fx:id="btnAddToBasket" mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" text="+" GridPane.columnIndex="3" />
             <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" />
-            <Label text="Label" GridPane.columnIndex="2" />
+            <ImageView fx:id="ImageviewItem" fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelPrice" text="(Price) kr." GridPane.columnIndex="2" />
             <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
             <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
             <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-            <Label text="Label" GridPane.columnIndex="1" />
+            <Label fx:id="labelDescription" text="Description" GridPane.columnIndex="1" />
             <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="532.0" layoutY="551.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="Button" />
-      <Label layoutX="532.0" layoutY="534.0" text="Label" />
-      <Label layoutX="716.0" layoutY="534.0" text="Label" />
-      <Label layoutX="624.0" layoutY="592.0" text="Label" />
+      <Button fx:id="btnViewBasket" layoutX="532.0" layoutY="551.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="View Basket/Checkeout" />
+      <Label fx:id="LabelBalance" layoutX="532.0" layoutY="534.0" text="Your Balance:" />
+      <Label fx:id="labelTotal" layoutX="676.0" layoutY="534.0" text="Total cost:" />
+      <Label fx:id="LabelItemInBasket" layoutX="603.0" layoutY="592.0" text="Items in basket" />
    </children>
 </AnchorPane>
