@@ -11,7 +11,7 @@ public class HelloController {
     private Label labelDescription, labelPrice, LabelItemInBasket, LabelBalance, labelTotal;
 
     @FXML
-    private Button btnLunch, btnDrinks, btnSandwiches, btnSnacks, btnAddToBasket, btnViewBasket ,btnLogout;
+    private Button btnLunch, btnDrinks, btnSandwiches, btnSnacks, btnAddToBasket, btnViewBasket ,btnLogout, btnLogin;
 
     @FXML
     private TextField tfSearch;
