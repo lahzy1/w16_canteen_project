@@ -25,10 +25,9 @@
             <TableView fx:id="subMenuTableView" layoutX="426.0" layoutY="112.0" prefHeight="398.0" prefWidth="454.0">
               <columns>
                 <TableColumn prefWidth="47.199981689453125" />
-                <TableColumn prefWidth="75.20001220703125" text="Name" />
-                  <TableColumn prefWidth="64.0" text="Price" />
-                  <TableColumn prefWidth="115.2000732421875" text="Description" />
-                  <TableColumn prefWidth="115.2000732421875" />
+                <TableColumn prefWidth="116.00003051757812" text="Name" />
+                  <TableColumn prefWidth="85.60003662109375" text="Price" />
+                  <TableColumn prefWidth="203.99993896484375" text="Description" />
               </columns>
             </TableView>
          </children>
