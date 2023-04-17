@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.w16_canteen_project/com.example.w16_canteen_project.HelloApplication
+                                com.example.w16_canteen_project/com.example.w16_canteen_project.CanteenApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

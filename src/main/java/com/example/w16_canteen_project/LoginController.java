@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class HelloController {
+public class LoginController {
     @FXML
     private Label labelDescription, labelPrice, LabelItemInBasket, LabelBalance, labelTotal;
 
@@ -18,4 +18,9 @@ public class HelloController {
 
     @FXML
     private ImageView ImageviewItem;
+
+    @FXML
+    protected void onLoginClick() {
+        CanteenApplication.changeScene(ControllerNames.MainMenu);
+    }
 }

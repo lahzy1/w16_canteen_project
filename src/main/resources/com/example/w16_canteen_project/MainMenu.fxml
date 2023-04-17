@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.MainMenuController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0">
+         <children>
+            <Button fx:id="btnLunch" layoutX="77.0" layoutY="109.0" mnemonicParsing="false" onAction="#onLunchClick" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
+            <Button fx:id="btnDrinks" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
+            <Button fx:id="btnSnacks" layoutX="76.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
+            <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
+            <Button fx:id="btnLogout" layoutX="121.0" layoutY="558.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="43.0" prefWidth="212.0" text="Logout" />
+            <TextField fx:id="tfSearch" layoutX="78.0" layoutY="52.0" prefHeight="43.0" prefWidth="318.0" promptText="Search" />
+            <Button fx:id="btnViewBasket" layoutX="532.0" layoutY="551.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="View Basket/Checkeout" />
+            <Label fx:id="LabelBalance" layoutX="532.0" layoutY="534.0" text="Your Balance:" />
+            <Label fx:id="labelTotal" layoutX="676.0" layoutY="534.0" text="Total cost:" />
+            <Label fx:id="LabelItemInBasket" layoutX="603.0" layoutY="592.0" text="Items in basket" />
+            <ListView fx:id="subMenuListView" layoutX="427.0" layoutY="111.0" prefHeight="414.0" prefWidth="447.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
