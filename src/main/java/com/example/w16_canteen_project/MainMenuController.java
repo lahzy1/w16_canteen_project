@@ -81,7 +81,7 @@ public class MainMenuController {
     }
 
     @FXML
-    protected void onSnacksClicked() {
+    protected void onSnacksClick() {
         DBDAOImpl db = new DBDAOImpl();
         setCellTables();
         items = FXCollections.observableArrayList();
