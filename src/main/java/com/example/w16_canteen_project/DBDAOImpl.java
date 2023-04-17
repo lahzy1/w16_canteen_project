@@ -79,10 +79,11 @@ public class DBDAOImpl implements DBDAO {
     }
 
     @Override
-    public ArrayList<Item> getAllItems() {
+    public ArrayList<Item> getAllItems(String category) {
         ArrayList<Item> items = new ArrayList<>();
         try {
-            ps = con.prepareStatement("Select * from tblItem");
+            ps = con.prepareStatement("Select * from tblItem where fldCategory = ?");
+            ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String name = rs.getString("fldName");
@@ -90,10 +91,13 @@ public class DBDAOImpl implements DBDAO {
                 String description = rs.getString("fldDescription");
                 String image = rs.getString("fldImage");
                 Item item = new Item(name, price, description, image);
+                items.add(item);
             }
             return items;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }

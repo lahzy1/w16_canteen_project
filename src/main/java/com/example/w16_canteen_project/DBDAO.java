@@ -10,6 +10,6 @@ public interface DBDAO {
     void deleteItem(Item item);
     void updateItem(Item item);
     abstract Item getItem(int id);
-    ArrayList<Item> getAllItems();
+    ArrayList<Item> getAllItems(String category);
 
 }

@@ -1,5 +1,7 @@
 package Model;
 
+import com.example.w16_canteen_project.*;
+
 public class Item {
     private String name;
     private Double price;
