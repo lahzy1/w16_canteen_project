@@ -15,7 +15,7 @@
             <Button fx:id="btnLunch" layoutX="77.0" layoutY="109.0" mnemonicParsing="false" onAction="#onLunchClick" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
             <Button fx:id="btnDrinks" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" onAction="#onDrinksClick" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
             <Button fx:id="btnSnacks" layoutX="76.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSandwichesClick" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
-            <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="337.0" mnemonicParsing="false" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
+            <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSnacksClick" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
             <Button fx:id="btnLogout" layoutX="121.0" layoutY="558.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="43.0" prefWidth="212.0" text="Logout" />
             <TextField fx:id="tfSearch" layoutX="78.0" layoutY="52.0" prefHeight="43.0" prefWidth="318.0" promptText="Search" />
             <Button fx:id="btnViewBasket" layoutX="532.0" layoutY="551.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="View Basket/Checkeout" />

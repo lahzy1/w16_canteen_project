@@ -51,7 +51,12 @@ public class MainMenuController {
 
     @FXML
     protected void onLunchClick() {
-        // TODO
+        DBDAOImpl db = new DBDAOImpl();
+        setCellTables();
+        items = FXCollections.observableArrayList();
+        items.clear();
+        items.addAll(db.getAllItems("Lunch"));
+        subMenuTableView.setItems(items);
     }
 
     @FXML
@@ -72,6 +77,16 @@ public class MainMenuController {
         items = FXCollections.observableArrayList();
         items.clear();
         items.addAll(db.getAllItems("Drinks"));
+        subMenuTableView.setItems(items);
+    }
+
+    @FXML
+    protected void onSnacksClicked() {
+        DBDAOImpl db = new DBDAOImpl();
+        setCellTables();
+        items = FXCollections.observableArrayList();
+        items.clear();
+        items.addAll(db.getAllItems("Snacks"));
         subMenuTableView.setItems(items);
     }
 
