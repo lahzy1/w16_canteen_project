@@ -52,10 +52,11 @@ public class DBDAOImpl implements DBDAO {
     @Override
     public void addItem(Item item) {
         try {
-            ps = con.prepareStatement("Insert into tblItem values (?,?,?)");
+            ps = con.prepareStatement("Insert into tblItem values (?,?,?,?)");
             ps.setString(1,item.getName());
             ps.setString(2,item.getDescription());
             ps.setDouble(3,item.getPrice());
+            ps.setString(4,item.getImage());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,6 +80,20 @@ public class DBDAOImpl implements DBDAO {
 
     @Override
     public ArrayList<Item> getAllItems() {
-        return null;
+        ArrayList<Item> items = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("Select * from tblItem");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("fldName");
+                double price = rs.getDouble("fldPrice");
+                String description = rs.getString("fldDescription");
+                String image = rs.getString("fldImage");
+                Item item = new Item(name, price, description, image);
+            }
+            return items;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
