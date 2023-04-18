@@ -7,29 +7,60 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.w16_canteen_project.MainMenuController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0">
          <children>
-            <Button fx:id="btnLunch" layoutX="77.0" layoutY="109.0" mnemonicParsing="false" onAction="#onLunchClick" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
-            <Button fx:id="btnDrinks" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" onAction="#onDrinksClick" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
-            <Button fx:id="btnSnacks" layoutX="76.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSandwichesClick" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
-            <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSnacksClick" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
-            <Button fx:id="btnLogout" layoutX="121.0" layoutY="558.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="43.0" prefWidth="212.0" text="Logout" />
-            <TextField fx:id="tfSearch" layoutX="78.0" layoutY="52.0" prefHeight="43.0" prefWidth="318.0" promptText="Search" />
-            <Button fx:id="btnViewBasket" layoutX="532.0" layoutY="551.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="212.0" text="View Basket/Checkeout" />
-            <Label fx:id="LabelBalance" layoutX="532.0" layoutY="534.0" text="Your Balance:" />
-            <Label fx:id="labelTotal" layoutX="676.0" layoutY="534.0" text="Total cost:" />
-            <Label fx:id="LabelItemInBasket" layoutX="603.0" layoutY="592.0" text="Items in basket" />
-            <TableView fx:id="subMenuTableView" layoutX="426.0" layoutY="112.0" prefHeight="398.0" prefWidth="454.0">
-              <columns>
-                <TableColumn prefWidth="47.199981689453125" />
-                <TableColumn prefWidth="116.00003051757812" text="Name" />
-                  <TableColumn prefWidth="85.60003662109375" text="Price" />
-                  <TableColumn prefWidth="203.99993896484375" text="Description" />
-              </columns>
-            </TableView>
+            <Button fx:id="btnLunch" layoutX="77.0" layoutY="126.0" mnemonicParsing="false" onAction="#onLunchClick" prefHeight="186.0" prefWidth="125.0" text="Lunch" />
+            <Button fx:id="btnDrinks" layoutX="270.0" layoutY="126.0" mnemonicParsing="false" onAction="#onDrinksClick" prefHeight="186.0" prefWidth="126.0" text="Drinks" />
+            <Button fx:id="btnSnacks" layoutX="76.0" layoutY="354.0" mnemonicParsing="false" onAction="#onSandwichesClick" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
+            <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="354.0" mnemonicParsing="false" onAction="#onSnacksClick" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
+            <Button fx:id="btnLogout" layoutX="121.0" layoutY="575.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="43.0" prefWidth="212.0" text="Logout" />
+            <TextField fx:id="tfSearch" layoutX="77.0" layoutY="76.0" prefHeight="25.0" prefWidth="318.0" promptText="Search" />
+            <AnchorPane fx:id="checkOutMenu" disable="true" layoutX="412.0" prefHeight="682.0" prefWidth="488.0" visible="false">
+               <children>
+                  <TableView fx:id="basketTableView" layoutX="17.0" layoutY="126.0" prefHeight="398.0" prefWidth="454.0">
+                     <columns>
+                        <TableColumn prefWidth="47.199981689453125" />
+                        <TableColumn prefWidth="116.00003051757812" text="Name" />
+                        <TableColumn prefWidth="85.60003662109375" text="Price" />
+                        <TableColumn prefWidth="203.99993896484375" text="Description" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btnCheckOut" layoutX="138.0" layoutY="577.0" mnemonicParsing="false" onAction="#onCheckOutClick" prefHeight="43.0" prefWidth="212.0" text="Check Out" />
+                  <Label fx:id="LabelBalance1" layoutX="138.0" layoutY="546.0" text="Your Balance:" />
+                  <Label fx:id="labelTotal1" layoutX="295.0" layoutY="546.0" text="Total cost:" />
+                  <Label fx:id="LabelItemInBasket1" layoutX="204.0" layoutY="627.0" text="Items in basket" />
+                  <Label fx:id="LabelBalance11" layoutX="184.0" layoutY="80.0" text="Your basket">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="subMenu" layoutX="412.0" prefHeight="682.0" prefWidth="488.0">
+               <children>
+                  <TableView fx:id="subMenuTableView" layoutX="17.0" layoutY="126.0" prefHeight="398.0" prefWidth="454.0">
+                    <columns>
+                      <TableColumn prefWidth="47.199981689453125" />
+                      <TableColumn prefWidth="116.00003051757812" text="Name" />
+                        <TableColumn prefWidth="85.60003662109375" text="Price" />
+                        <TableColumn prefWidth="203.99993896484375" text="Description" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnViewBasket" layoutX="138.0" layoutY="577.0" mnemonicParsing="false" onAction="#viewBasket" prefHeight="43.0" prefWidth="212.0" text="View Basket/Check out" />
+                  <Label fx:id="LabelBalance" layoutX="138.0" layoutY="546.0" text="Your Balance:" />
+                  <Label fx:id="labelTotal" layoutX="295.0" layoutY="546.0" text="Total cost:" />
+                  <Label fx:id="LabelItemInBasket" layoutX="204.0" layoutY="627.0" text="Items in basket" />
+                  <Label fx:id="labelSubMenu" alignment="CENTER" layoutX="145.0" layoutY="80.0" prefHeight="34.0" prefWidth="197.0">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

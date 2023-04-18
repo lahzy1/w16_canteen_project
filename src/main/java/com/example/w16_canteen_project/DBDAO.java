@@ -1,6 +1,7 @@
 package com.example.w16_canteen_project;
 
 import Model.Item;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public interface DBDAO {
     void deleteItem(Item item);
     void updateItem(Item item);
     abstract Item getItem(int id);
-    ArrayList<Item> getAllItems(String category);
+    ObservableList<Item> getAllItems(String category);
+    ObservableList<Item> getAllItems();
 
 }

@@ -1,5 +1,6 @@
 package com.example.w16_canteen_project;
 
+import Model.Basket;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

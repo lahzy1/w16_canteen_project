@@ -1,6 +1,8 @@
 package com.example.w16_canteen_project;
 
 import Model.Item;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,6 +20,13 @@ public class DBDAOImpl implements DBDAO {
     public static String databaseName;
     public static String userName;
     public static String password;
+
+    String name;
+    double price;
+    String description;
+    String image;
+    Item item;
+    ObservableList<Item> items = FXCollections.observableArrayList();
 
     public DBDAOImpl()
     {
@@ -79,24 +88,28 @@ public class DBDAOImpl implements DBDAO {
     }
 
     @Override
-    public ArrayList<Item> getAllItems(String category) {
-        ArrayList<Item> items = new ArrayList<>();
+    public ObservableList<Item> getAllItems(String category) {
         try {
             ps = con.prepareStatement("Select * from tblItem where fldCategory = ?");
             ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String name = rs.getString("fldName");
-                double price = rs.getDouble("fldPrice");
-                String description = rs.getString("fldDescription");
-                String image = rs.getString("fldImage");
-                Item item = new Item(name, price, description, image);
+                name = rs.getString("fldName");
+                price = rs.getDouble("fldPrice");
+                description = rs.getString("fldDescription");
+                image = rs.getString("fldImage");
+                item = new Item(name, price, description, image);
                 items.add(item);
             }
             return items;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public ObservableList<Item> getAllItems() {
+        return items;
     }
 
 
