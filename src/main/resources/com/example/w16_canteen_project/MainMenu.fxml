@@ -18,6 +18,7 @@
             <Button fx:id="btnSnacks" layoutX="76.0" layoutY="354.0" mnemonicParsing="false" onAction="#onSandwichesClick" prefHeight="186.0" prefWidth="126.0" text="Sandwiches" />
             <Button fx:id="btnSandwiches" layoutX="270.0" layoutY="354.0" mnemonicParsing="false" onAction="#onSnacksClick" prefHeight="186.0" prefWidth="126.0" text="Snacks" />
             <Button fx:id="btnLogout" layoutX="121.0" layoutY="575.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="43.0" prefWidth="212.0" text="Logout" />
+            <Label fx:id="usernameLabel" layoutX="121.0" layoutY="627.0" prefHeight="18.0" prefWidth="179.0" text="Logged in as:" />
             <TextField fx:id="tfSearch" layoutX="77.0" layoutY="76.0" prefHeight="25.0" prefWidth="318.0" promptText="Search" />
             <AnchorPane fx:id="checkOutMenu" disable="true" layoutX="412.0" prefHeight="682.0" prefWidth="488.0" visible="false">
                <children>

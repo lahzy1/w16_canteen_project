@@ -14,13 +14,14 @@ public class Item {
 
     private String minimumStock;
 
-    private int itemId;
+    private int itemID;
 
-    public Item(String name, Double price, String description,  String image) {
+    public Item(String name, Double price, String description,  String image, int itemID) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
+        this.itemID = itemID;
     }
 
     public String getName() {
@@ -51,8 +52,8 @@ public class Item {
         return minimumStock;
     }
 
-    public int getItemId() {
-        return itemId;
+    public int getItemID() {
+        return itemID;
     }
 }
 

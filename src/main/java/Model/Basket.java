@@ -17,8 +17,12 @@ public class Basket {
 
 
     //get items
-    public ObservableList<Item> getBasketItems() {
-        return basketItems;
+    public Items getBasketItems() {
+        Items items = new Items();
+        for (Item item : basketItems) {
+            items.addItem(item);
+        }
+        return items;
     }
 
     public String getTotal() {
@@ -35,13 +39,7 @@ public class Basket {
     }
 
 
-
-
-
-
-
-
-
-
-
+    public void removeItemFromBasket(Item selectedItem) {
+        basketItems.remove(selectedItem);
+    }
 }

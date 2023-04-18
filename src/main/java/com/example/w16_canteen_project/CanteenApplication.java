@@ -1,6 +1,7 @@
 package com.example.w16_canteen_project;
 
 import Model.Basket;
+import Model.Employee;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,11 @@ public class CanteenApplication extends Application {
 
     private static ArrayList<SceneController> scenes = new ArrayList<>();
     private static Stage primaryStageHolder = null;
+
+    static DBDAO db = new DBDAOImpl();
+
+    static Basket basket = new Basket();
+    static Employee employee;
 
     @Override
     public void start(Stage stage) throws IOException {

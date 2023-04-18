@@ -1,6 +1,9 @@
 package com.example.w16_canteen_project;
 
+import Model.Employee;
 import Model.Item;
+import Model.Items;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -8,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class DBDAOImpl implements DBDAO {
@@ -21,12 +23,14 @@ public class DBDAOImpl implements DBDAO {
     public static String userName;
     public static String password;
 
-    String name;
+    String itemName;
     double price;
     String description;
     String image;
     Item item;
-    ObservableList<Item> items = FXCollections.observableArrayList();
+    int itemID;
+
+    Items items = new Items();
 
     public DBDAOImpl()
     {
@@ -97,7 +101,7 @@ public class DBDAOImpl implements DBDAO {
             ps.setString(5, item.getCategory());
             ps.setString(6, item.getCurrentStock());
             ps.setString(7, item.getMinimumStock());
-            ps.setInt(8, item.getItemId());
+            ps.setInt(8, item.getItemID());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,14 +123,15 @@ public class DBDAOImpl implements DBDAO {
             ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
-                name = rs.getString("fldName");
+                itemName = rs.getString("fldName");
                 price = rs.getDouble("fldPrice");
                 description = rs.getString("fldDescription");
                 image = rs.getString("fldImage");
-                item = new Item(name, price, description, image);
-                items.add(item);
+                itemID = rs.getInt("fldItemID");
+                item = new Item(itemName, price, description, image, itemID);
+                items.addItem(item);
             }
-            return items;
+            return items.getItems();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -134,8 +139,77 @@ public class DBDAOImpl implements DBDAO {
 
     @Override
     public ObservableList<Item> getAllItems() {
-        return items;
+        return items.getItems();
     }
 
+
+
+    @Override
+    public boolean addOrder(Items items, Employee employee) {
+        if (CanteenApplication.employee.getEmployeeBalance() >= items.getTotal()) {
+            try {
+                ps = con.prepareStatement("INSERT INTO tblOrder (fldEmployeeID, fldNumberOfItems" +
+                        ", fldTotalCost) VALUES (?, ?, ?)");
+                ps.setInt(1, Integer.parseInt(employee.getEmployeeID()));
+                ps.setInt(2, items.getSize());
+                ps.setDouble(3, items.getTotal());
+                ps.executeUpdate();
+                updateBalance(employee, items.getTotal());
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean login(String userName, String password) {
+        try {
+            int employeeID;
+            double employeeBalance;
+            //Get username and password from login page
+            ps = con.prepareStatement("Select * from tblLogin where fldUsername = ? and fldPassword = ?");
+            ps.setString(1, userName);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                ps = con.prepareStatement(("SELECT fldEmployeeID FROM tblLogin WHERE fldUsername = ? AND fldPassword = ?"));
+                ps.setString(1, userName);
+                ps.setString(2, password);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    employeeID = rs.getInt("fldEmployeeID");
+                    ps = con.prepareStatement("SELECT fldAccountBalance FROM tblEmployee WHERE fldEmployeeID = ?");
+                    ps.setInt(1, employeeID);
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        employeeBalance = Double.parseDouble(rs.getString("fldAccountBalance"));
+                        CanteenApplication.employee = new Employee(userName, password, employeeID, employeeBalance);
+                        return true;
+                    }
+                }
+            } else {
+                System.out.println("Login Failed");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    private void updateBalance(Employee employee, double v) {
+        try {
+            ps = con.prepareStatement("UPDATE tblEmployee SET fldAccountBalance = ? WHERE fldEmployeeID = ?");
+            ps.setDouble(1, employee.getEmployeeBalance() - v);
+            ps.setInt(2, Integer.parseInt(employee.getEmployeeID()));
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

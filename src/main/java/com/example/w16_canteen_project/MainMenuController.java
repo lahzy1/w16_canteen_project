@@ -2,6 +2,7 @@ package com.example.w16_canteen_project;
 
 import Model.Basket;
 import Model.Item;
+import Model.Items;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -14,13 +15,11 @@ import java.security.URIParameter;
 public class MainMenuController {
 
     @FXML
-    private Label LabelBalance;
+    private Label LabelBalance, LabelBalance1, labelTotal, labelSubMenu,
+            LabelItemInBasket, labelTotal1, labelSubMenu1, LabelItemInBasket1, usernameLabel;
 
     @FXML
     private Button btnDrinks, btnLogout, btnLunch, btnSandwiches, btnSnacks, btnViewBasket;
-
-    @FXML
-    private Label labelTotal, labelSubMenu, LabelItemInBasket, labelTotal1, labelSubMenu1, LabelItemInBasket1;
 
     @FXML
     private AnchorPane checkOutMenu, subMenu;
@@ -32,9 +31,9 @@ public class MainMenuController {
     private TextField tfSearch;
 
 
-    public void initialize()
+    private void initialize()
     {
-        DBDAO db = new DBDAOImpl();
+        updateTextLabels();
         tfSearch.setPromptText("Search");
         tfSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -48,15 +47,10 @@ public class MainMenuController {
 
     }
 
-
-    Basket basket = new Basket();
-
-
-
     @FXML
     protected void onLogoutClick() {
         CanteenApplication.changeScene(ControllerNames.Login);
-        basket.clearBasket();
+        CanteenApplication.basket.clearBasket();
         changeViewToSubMenu();
         updateTextLabels();
         subMenuTableView.getItems().clear();
@@ -102,13 +96,36 @@ public class MainMenuController {
     protected void viewBasket() {
         changeViewToBasket();
         setBasketCellTables();
-        basketTableView.setItems(basket.getBasketItems());
+        basketTableView.setItems(CanteenApplication.basket.getBasketItems().getItems());
         updateTextLabels();
     }
 
 
     @FXML
     protected void onCheckOutClick() {
+        // TODO
+        // add order to DB
+        if (CanteenApplication.db.addOrder(CanteenApplication.basket.getBasketItems(), CanteenApplication.employee))
+        {
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Order succesful");
+            dialog.setHeaderText("Your payment was succesful!");
+            ButtonType buttonTypeOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+            dialog.showAndWait();
+            onLogoutClick();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Your payment was unsuccesful!");
+            alert.setContentText("Insufficient funds");
+            alert.showAndWait();
+        }
+
+
+
+
 
     }
 
@@ -123,7 +140,7 @@ public class MainMenuController {
                 if (!subMenuTableView.getSelectionModel().isEmpty())
                 {
                     Item selectedItem = subMenuTableView.getSelectionModel().getSelectedItem();
-                    basket.addItemToBasket(selectedItem);
+                    CanteenApplication.basket.addItemToBasket(selectedItem);
                     updateTextLabels();
                 }
                 else {
@@ -149,7 +166,8 @@ public class MainMenuController {
                     if (!basketTableView.getSelectionModel().isEmpty())
                     {
                         Item selectedItem = basketTableView.getSelectionModel().getSelectedItem();
-                        basket.getBasketItems().remove(selectedItem);
+                        CanteenApplication.basket.removeItemFromBasket(selectedItem);
+                        basketTableView.setItems(CanteenApplication.basket.getBasketItems().getItems());
                         updateTextLabels();
                     }
                     else {
@@ -176,10 +194,13 @@ public class MainMenuController {
     }
 
     public void updateTextLabels() {
-        LabelItemInBasket.setText("Items in basket: " + String.valueOf(basket.getBasketItems().size()));
-        labelTotal.setText("Total cost: " + String.valueOf(basket.getTotal()));
-        LabelItemInBasket1.setText("Items in basket: " + String.valueOf(basket.getBasketItems().size()));
-        labelTotal1.setText("Total cost: " + String.valueOf(basket.getTotal()));
+        LabelItemInBasket.setText("Items in basket: " + String.valueOf(CanteenApplication.basket.getBasketItems().getSize()));
+        labelTotal.setText("Total cost: " + String.valueOf(CanteenApplication.basket.getTotal()));
+        LabelItemInBasket1.setText("Items in basket: " + String.valueOf(CanteenApplication.basket.getBasketItems().getSize()));
+        labelTotal1.setText("Total cost: " + String.valueOf(CanteenApplication.basket.getTotal()));
+        LabelBalance.setText("Balance: " + String.valueOf(CanteenApplication.employee.getEmployeeBalance()));
+        LabelBalance1.setText("Balance: " + String.valueOf(CanteenApplication.employee.getEmployeeBalance()));
+        usernameLabel.setText("Logged in as: "+ CanteenApplication.employee.getEmployeeUsername());
     }
 
 
