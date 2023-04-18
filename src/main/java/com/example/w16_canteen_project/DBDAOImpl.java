@@ -74,11 +74,36 @@ public class DBDAOImpl implements DBDAO {
 
     @Override
     public void deleteItem(Item item) {
+        try {
+            PreparedStatement ps = con.prepareStatement("delete from tblItem where fldName=?");
+            ps.setString(1, item.getName());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void updateItem(Item item) {
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE project" + "SET fldName = ?" +
+                    "SET fldPrice = ?" + "SET fldDescription = ?" + "SET fldImage = ?" + "SET Category = ?" +
+                    "SET fldCurrentStock = ?" + "SET fldMinimumStock = ?" + "WHERE fldItemID = ?;");
+            ps.setString(1, item.getName());
+            ps.setDouble(2, item.getPrice());
+            ps.setString(3, item.getDescription());
+            ps.setString(4, item.getImage());
+            ps.setString(5, item.getCategory());
+            ps.setString(6, item.getCurrentStock());
+            ps.setString(7, item.getMinimumStock());
+            ps.setInt(8, item.getItemId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 

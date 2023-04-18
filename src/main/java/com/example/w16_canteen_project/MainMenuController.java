@@ -2,6 +2,8 @@ package com.example.w16_canteen_project;
 
 import Model.Basket;
 import Model.Item;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,7 +31,27 @@ public class MainMenuController {
     @FXML
     private TextField tfSearch;
 
+
+    public void initialize()
+    {
+        DBDAO db = new DBDAOImpl();
+        tfSearch.setPromptText("Search");
+        tfSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue)
+            {
+                // TODO lav search method for alle items
+
+
+            }
+        });
+
+    }
+
+
     Basket basket = new Basket();
+
+
 
     @FXML
     protected void onLogoutClick() {
@@ -83,6 +105,7 @@ public class MainMenuController {
         basketTableView.setItems(basket.getBasketItems());
         updateTextLabels();
     }
+
 
     @FXML
     protected void onCheckOutClick() {
