@@ -1,6 +1,7 @@
 package com.example.w16_canteen_project;
 
 import Model.Item;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -49,7 +50,6 @@ public class MainMenuController {
 
     private void initialize()
     {
-        updateTextLabels();
         tfSearch.setPromptText("Search");
         tfSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -68,7 +68,6 @@ public class MainMenuController {
         CanteenApplication.changeScene(ControllerNames.Login);
         CanteenApplication.basket.clearBasket();
         changeViewToSubMenu();
-        updateTextLabels();
         subMenuTableView.getItems().clear();
     }
 
@@ -113,7 +112,7 @@ public class MainMenuController {
         changeViewToBasket();
         setBasketCellTables();
         basketTableView.setItems(CanteenApplication.basket.getBasketItems().getItems());
-        updateTextLabels();
+
     }
 
 
@@ -205,14 +204,21 @@ public class MainMenuController {
     }
 
     public void updateTextLabels() {
-        LabelItemInBasket.setText("Items in basket: " + String.valueOf(CanteenApplication.basket.getBasketItems().getSize()));
-        labelTotal.setText("Total cost: " + String.valueOf(CanteenApplication.basket.getTotal()));
-        LabelItemInBasket1.setText("Items in basket: " + String.valueOf(CanteenApplication.basket.getBasketItems().getSize()));
-        labelTotal1.setText("Total cost: " + String.valueOf(CanteenApplication.basket.getTotal()));
-        LabelBalance.setText("Balance: " + String.valueOf(CanteenApplication.employee.getEmployeeBalance()));
-        LabelBalance1.setText("Balance: " + String.valueOf(CanteenApplication.employee.getEmployeeBalance()));
-        usernameLabel.setText("Logged in as: "+ CanteenApplication.employee.getEmployeeUsername());
+        LabelItemInBasket.textProperty().bind(new SimpleStringProperty("Items in basket: ").concat
+                (CanteenApplication.basket.getBasketItems().getSize()));
+        labelTotal.textProperty().bind(new SimpleStringProperty("Total cost: ").concat
+                (CanteenApplication.basket.getTotal()));
+        LabelItemInBasket1.textProperty().bind(new SimpleStringProperty("Items in basket: ").concat
+                (CanteenApplication.basket.getBasketItems().getSize()));
+        labelTotal1.textProperty().bind(new SimpleStringProperty("Total cost: ").concat
+                (CanteenApplication.basket.getTotal()));
+        LabelBalance.textProperty().bind(new SimpleStringProperty("Balance: ").concat
+                (CanteenApplication.employee.getEmployeeBalance()));
+        LabelBalance1.textProperty().bind(new SimpleStringProperty("Balance: ").concat
+                (CanteenApplication.employee.getEmployeeBalance()));
+        usernameLabel.textProperty().bind(new SimpleStringProperty("Logged in as: ").concat
+                (CanteenApplication.employee.getEmployeeUsername()));
     }
-    
+
 }
 
