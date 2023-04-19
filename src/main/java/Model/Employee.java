@@ -8,6 +8,7 @@ public class Employee {
     private String employeeUsername;
     private String employeePassword;
     private String employeeID;
+
     private Double employeeBalance;
     private String employeeDepartment;
 
@@ -62,6 +63,9 @@ public class Employee {
         return employeeDepartment;
     }
 
+    public void setEmployeeBalance(Double employeeBalance) {
+        this.employeeBalance = employeeBalance;
+    }
 
 
 

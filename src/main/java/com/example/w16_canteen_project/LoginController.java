@@ -39,7 +39,7 @@ public class LoginController {
             // If not correct, show error message
             if (CanteenApplication.db.login(username.getText(), password.getText())) {
                 CanteenApplication.changeScene(ControllerNames.MainMenu);
-                Label usernameLabel1 = new Label(username.getText());
+                CanteenApplication.mainMenuController.updateTextLabels();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

@@ -1,8 +1,6 @@
 package com.example.w16_canteen_project;
 
-import Model.Basket;
 import Model.Item;
-import Model.Items;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -10,13 +8,31 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-import java.security.URIParameter;
-
 public class MainMenuController {
 
     @FXML
-    private Label LabelBalance, LabelBalance1, labelTotal, labelSubMenu,
-            LabelItemInBasket, labelTotal1, labelSubMenu1, LabelItemInBasket1, usernameLabel;
+    private Label LabelBalance;
+    @FXML
+    private Label LabelBalance1;
+    @FXML
+    private Label labelTotal;
+    @FXML
+    private Label labelSubMenu;
+    @FXML
+    private Label LabelItemInBasket;
+    @FXML
+    private Label labelTotal1;
+    @FXML
+    private Label labelSubMenu1;
+    @FXML
+    private Label LabelItemInBasket1;
+
+    public void setUsernameLabel(String usernameLabel) {
+        this.usernameLabel.setText(usernameLabel);
+    }
+
+    @FXML
+    private Label usernameLabel;
 
     @FXML
     private Button btnDrinks, btnLogout, btnLunch, btnSandwiches, btnSnacks, btnViewBasket;
@@ -119,14 +135,9 @@ public class MainMenuController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Your payment was unsuccesful!");
-            alert.setContentText("Insufficient funds");
+            alert.setContentText("Please try again");
             alert.showAndWait();
         }
-
-
-
-
-
     }
 
     private void setSubMenuCellTables() {
@@ -202,7 +213,6 @@ public class MainMenuController {
         LabelBalance1.setText("Balance: " + String.valueOf(CanteenApplication.employee.getEmployeeBalance()));
         usernameLabel.setText("Logged in as: "+ CanteenApplication.employee.getEmployeeUsername());
     }
-
-
+    
 }
 

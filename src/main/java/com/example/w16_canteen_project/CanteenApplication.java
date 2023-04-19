@@ -21,6 +21,8 @@ public class CanteenApplication extends Application {
 
     static Basket basket = new Basket();
     static Employee employee;
+    LoginController loginController;
+    static MainMenuController mainMenuController;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,10 +31,12 @@ public class CanteenApplication extends Application {
         FXMLLoader loginViewFXML = new FXMLLoader(getClass().getResource("LoginView.fxml"));
         Parent loginViewPane = loginViewFXML.load();
         Scene loginScene = new Scene(loginViewPane);
+        loginController = loginViewFXML.getController();
 
         FXMLLoader mainMenuFXML = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         Parent mainMenuViewPane = mainMenuFXML.load();
         Scene mainMenuScene = new Scene(mainMenuViewPane);
+        mainMenuController = mainMenuFXML.getController();
 
         scenes.add(new SceneController(loginScene, ControllerNames.Login));
         scenes.add(new SceneController(mainMenuScene, ControllerNames.MainMenu));

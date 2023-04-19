@@ -146,22 +146,25 @@ public class DBDAOImpl implements DBDAO {
 
     @Override
     public boolean addOrder(Items items, Employee employee) {
-        if (CanteenApplication.employee.getEmployeeBalance() >= items.getTotal()) {
-            try {
-                ps = con.prepareStatement("INSERT INTO tblOrder (fldEmployeeID, fldNumberOfItems" +
-                        ", fldTotalCost) VALUES (?, ?, ?)");
-                ps.setInt(1, Integer.parseInt(employee.getEmployeeID()));
-                ps.setInt(2, items.getSize());
-                ps.setDouble(3, items.getTotal());
-                ps.executeUpdate();
-                updateBalance(employee, items.getTotal());
-                return true;
-            } catch (SQLException e) {
-                e.printStackTrace();
+        if (items.getSize() != 0)
+        {
+            if (CanteenApplication.employee.getEmployeeBalance() >= items.getTotal()) {
+                try {
+                    ps = con.prepareStatement("INSERT INTO tblOrder (fldEmployeeID, fldNumberOfItems" +
+                            ", fldTotalCost) VALUES (?, ?, ?)");
+                    ps.setInt(1, Integer.parseInt(employee.getEmployeeID()));
+                    ps.setInt(2, items.getSize());
+                    ps.setDouble(3, items.getTotal());
+                    ps.executeUpdate();
+                    updateBalance(employee, items.getTotal());
+                    return true;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        else {
-            return false;
+            else {
+                return false;
+            }
         }
         return false;
     }
