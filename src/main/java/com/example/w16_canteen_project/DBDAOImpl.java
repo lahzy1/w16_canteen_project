@@ -63,60 +63,6 @@ public class DBDAOImpl implements DBDAO {
 
 
     @Override
-    public void addItem(Item item) {
-        try {
-            ps = con.prepareStatement("Insert into tblItem values (?,?,?,?)");
-            ps.setString(1,item.getName());
-            ps.setString(2,item.getDescription());
-            ps.setDouble(3,item.getPrice());
-            ps.setString(4,item.getImage());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void deleteItem(Item item) {
-        try {
-            PreparedStatement ps = con.prepareStatement("delete from tblItem where fldName=?");
-            ps.setString(1, item.getName());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void updateItem(Item item) {
-        try {
-            PreparedStatement ps = con.prepareStatement("UPDATE project" + "SET fldName = ?" +
-                    "SET fldPrice = ?" + "SET fldDescription = ?" + "SET fldImage = ?" + "SET Category = ?" +
-                    "SET fldCurrentStock = ?" + "SET fldMinimumStock = ?" + "WHERE fldItemID = ?;");
-            ps.setString(1, item.getName());
-            ps.setDouble(2, item.getPrice());
-            ps.setString(3, item.getDescription());
-            ps.setString(4, item.getImage());
-            ps.setString(5, item.getCategory());
-            ps.setString(6, item.getCurrentStock());
-            ps.setString(7, item.getMinimumStock());
-            ps.setInt(8, item.getItemID());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-    }
-
-    @Override
-    public Item getItem(int id) {
-        return null;
-    }
-
-    @Override
     public ObservableList<Item> getAllItems(String category) {
         try {
             ps = con.prepareStatement("Select * from tblItem where fldCategory = ?");
@@ -136,12 +82,6 @@ public class DBDAOImpl implements DBDAO {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public ObservableList<Item> getAllItems() {
-        return items.getItems();
-    }
-
 
 
     @Override

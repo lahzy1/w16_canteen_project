@@ -8,12 +8,7 @@ import javafx.collections.ObservableList;
 
 public interface DBDAO {
 
-    void addItem(Item item);
-    void deleteItem(Item item);
-    void updateItem(Item item);
-    abstract Item getItem(int id);
     ObservableList<Item> getAllItems(String category);
-    ObservableList<Item> getAllItems();
 
     boolean addOrder(Items items, Employee employee);
 
